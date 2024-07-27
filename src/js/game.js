@@ -1,4 +1,5 @@
 import {KEYBOARD_LETTERS, WORDS} from "./consts.js";
+import h0 from '../assets/hg-0.png';
 
 const gameDiv = document.getElementById('game');
 const logoH1 = document.getElementById('logo');
@@ -29,7 +30,7 @@ const createKeyboard = () => {
 
 const createHangmanImg = () => {
   const image = document.createElement('img');
-  image.src = '../../images/hg-5.png';
+  image.src = `${h0}`;
   image.alt = 'hangman image';
   image.classList.add('hangman-img');
   image.id = 'hangman-img';
