@@ -10,12 +10,13 @@ import hg7 from '../assets/hg-7.png';
 import hg8 from '../assets/hg-8.png';
 import hg9 from '../assets/hg-9.png';
 import hg10 from '../assets/hg-10.png';
-// import hgwin from '../assets/hg-win.png';
+import hgwin from '../assets/hg-win.png';
 
 const gameDiv = document.getElementById('game');
 const logoH1 = document.getElementById('logo');
 
 let triesLeft;
+let winCount;
 
 const createPlaceholdersHTML = () => {
   const word = sessionStorage.getItem('word');
@@ -63,19 +64,53 @@ const checkLetter = (letter) => {
     const hangmanImg = document.getElementById('hangman-img');
     const hangmanImages = [hg0, hg1, hg2, hg3, hg4, hg5, hg6, hg7, hg8, hg9, hg10];
     hangmanImg.src = hangmanImages[10 - triesLeft];
-  } else {
 
+    if (triesLeft === 0) {
+      stopGame('lose');
+    }
+  } else {
     const wordArray = Array.from(word);
     wordArray.forEach((currentLetter, i) => {
       if (currentLetter === inputLetter) {
+        winCount += 1;
+        if (winCount === word.length) {
+          stopGame('win');
+          return;
+        }
         document.getElementById(`letter_${i}`).innerText = inputLetter.toUpperCase();
       }
     })
   }
 }
 
+const stopGame = (status) => {
+  document.getElementById('placeholders').remove();
+  document.getElementById('tries').remove();
+  document.getElementById('keyboard').remove();
+  document.getElementById('quit').remove();
+
+  const word = sessionStorage.getItem('word');
+
+  if (status === 'win') {
+    document.getElementById('hangman-img').src = hgwin;
+    document.getElementById('game').innerHTML += '<h2 class="result-header win">You won!</h2>';
+  } else if (status === 'lose') {
+    document.getElementById('game').innerHTML += '<h2 class="result-header lose">You lost :(</h2>';
+  } else if (status === 'quit') {
+    logoH1.classList.remove('logo-sm')
+    document.getElementById('hangman-img').remove();
+  }
+
+  document.getElementById('game').innerHTML += `<p class="word">The word was: 
+    <span class="result-word">${word}</span></p> 
+    <button id="play-again" class="button-primary px-5 py-5 mt-5">Start new game</button>`;
+
+  document.getElementById('play-again').onclick = startGame;
+}
+
 export const startGame = () => {
   triesLeft = 10;
+  winCount = 0;
 
   logoH1.classList.add('logo-sm')
   const randomIndex = Math.floor(Math.random() * WORDS.length);
@@ -98,4 +133,13 @@ export const startGame = () => {
 
   gameDiv.prepend(hangmanImg);
   gameDiv.appendChild(keyboardDiv);
+
+  gameDiv.insertAdjacentElement('beforeend', '<button id="quit" class="button-secondary px-2 py-1 mt-4">Quit</button>')
+
+  document.getElementById('quit').onclick = () => {
+    const isSure = confirm('Are you sure you want to quit and lose progress?');
+    if (isSure) {
+      stopGame('quit');
+    }
+  }
 }

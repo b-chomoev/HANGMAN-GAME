@@ -51,6 +51,10 @@
     enabled:hover:bg-slate-300 rounded-md font-medium px-5 py-2 disabled:opacity-20 disabled:cursor-not-allowed;
   }
 
+  .button-secondary {
+    @apply border border-black rounded-md hover:bg-slate-100 dark:border-white dark:hover:bg-zinc-600;
+  }
+
   .placeholders-wrapper {
     @apply flex flex-row;
   }
@@ -69,5 +73,19 @@
 
   .hangman-img {
     @apply w-32 h-32 sm:w-60 sm:h-60;
+  }
+
+  .result-header {
+    @apply text-2xl font-bold;
+  }
+  .result-header.win {
+    @apply text-lime-600;
+  }
+  .result-header.lose {
+    @apply text-red-600;
+  }
+
+  .result-word {
+    @apply font-medium uppercase;
   }
 }
