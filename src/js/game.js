@@ -1,16 +1,16 @@
 import {KEYBOARD_LETTERS, WORDS} from "./consts.js";
-import hg0 from '../assets/hg-0.png';
-import hg1 from '../assets/hg-1.png';
-import hg2 from '../assets/hg-2.png';
-import hg3 from '../assets/hg-3.png';
-import hg4 from '../assets/hg-4.png';
-import hg5 from '../assets/hg-5.png';
-import hg6 from '../assets/hg-6.png';
-import hg7 from '../assets/hg-7.png';
-import hg8 from '../assets/hg-8.png';
-import hg9 from '../assets/hg-9.png';
-import hg10 from '../assets/hg-10.png';
-import hgwin from '../assets/hg-win.png';
+import hg0 from '../../public/images/hg-0.png';
+import hg1 from '../../public/images/hg-1.png';
+import hg2 from '../../public/images/hg-2.png';
+import hg3 from '../../public/images/hg-3.png';
+import hg4 from '../../public/images/hg-4.png';
+import hg5 from '../../public/images/hg-5.png';
+import hg6 from '../../public/images/hg-6.png';
+import hg7 from '../../public/images/hg-7.png';
+import hg8 from '../../public/images/hg-8.png';
+import hg9 from '../../public/images/hg-9.png';
+import hg10 from '../../public/images/hg-10.png';
+import hgwin from '../../public/images/hg-win.png';
 
 const gameDiv = document.getElementById('game');
 const logoH1 = document.getElementById('logo');
@@ -134,7 +134,7 @@ export const startGame = () => {
   gameDiv.prepend(hangmanImg);
   gameDiv.appendChild(keyboardDiv);
 
-  gameDiv.insertAdjacentElement('beforeend', '<button id="quit" class="button-secondary px-2 py-1 mt-4">Quit</button>')
+  gameDiv.insertAdjacentHTML('beforeend', '<button id="quit" class="button-secondary px-2 py-1 mt-4">Quit</button>');
 
   document.getElementById('quit').onclick = () => {
     const isSure = confirm('Are you sure you want to quit and lose progress?');
