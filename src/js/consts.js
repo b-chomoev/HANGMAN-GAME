@@ -1,2 +1,2 @@
-export const WORDS = ['code', 'frontend', 'programming'];
+export const WORDS = ['lxd', 'lord', 'nivine'];
 export const KEYBOARD_LETTERS = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
