@@ -95,7 +95,7 @@ const stopGame = (status) => {
     document.getElementById('hangman-img').src = hgwin;
     document.getElementById('game').innerHTML += '<h2 class="result-header win">You won!</h2>';
   } else if (status === 'lose') {
-    document.getElementById('game').innerHTML += '<h2 class="result-header lose">You lost :(</h2>';
+    document.getElementById('game').innerHTML += '<h2 class="result-header lose">You are not winner :(</h2>';
   } else if (status === 'quit') {
     logoH1.classList.remove('logo-sm')
     document.getElementById('hangman-img').remove();
