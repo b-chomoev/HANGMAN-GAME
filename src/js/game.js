@@ -1,4 +1,4 @@
-import {KEYBOARD_LETTERS, WORDS} from "./consts.js";
+import {KEYBOARD_LETTERS, WORDS, HINTS} from "./consts.js";
 import hg0 from '../../public/images/hg-0.png';
 import hg1 from '../../public/images/hg-1.png';
 import hg2 from '../../public/images/hg-2.png';
@@ -115,12 +115,13 @@ export const startGame = () => {
   logoH1.classList.add('logo-sm')
   const randomIndex = Math.floor(Math.random() * WORDS.length);
   const wordToGuess = WORDS[randomIndex];
+  const hint = HINTS[wordToGuess];
   sessionStorage.setItem('word', wordToGuess);
 
   gameDiv.innerHTML = createPlaceholdersHTML();
 
   gameDiv.innerHTML += '<p id="tries" class="mt-2">TRIES LEFT: <span id="tries-left" class="font-medium text-red-600">10</span></p>'
-  if (wordToGuess === 'lxd') gameDiv.innerHTML += '<p class="hint">Hint: The best department in NLU is </p>';
+  gameDiv.innerHTML += `<p id="hint" class="mt-2">HINT: <span class="font-medium">${hint}</span></p>`;
 
   const keyboardDiv = createKeyboard();
   keyboardDiv.addEventListener('click', (event) => {
