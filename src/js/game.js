@@ -120,6 +120,7 @@ export const startGame = () => {
   gameDiv.innerHTML = createPlaceholdersHTML();
 
   gameDiv.innerHTML += '<p id="tries" class="mt-2">TRIES LEFT: <span id="tries-left" class="font-medium text-red-600">10</span></p>'
+  if (wordToGuess === 'lxd') gameDiv.innerHTML += '<p class="hint">Hint: The best department in NLU is </p>';
 
   const keyboardDiv = createKeyboard();
   keyboardDiv.addEventListener('click', (event) => {
